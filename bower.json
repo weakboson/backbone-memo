@@ -1,0 +1,31 @@
+{
+  "name": "backbone-memo",
+  "version": "0.0.1",
+  "description": "backbone memo tutorial",
+  "main": "js/models.js",
+  "moduleType": [
+    "globals"
+  ],
+  "authors": [
+    "weakboson"
+  ],
+  "license": "MIT",
+  "homepage": "http://weakboson.wordpress.com/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "backbone.localstorage": "1.1.14",
+    "jquery": "~2.1.1",
+    "underscore": "~1.7.0",
+    "json2": "*",
+    "bootstrap": "~3.3.0"
+  }
+}
