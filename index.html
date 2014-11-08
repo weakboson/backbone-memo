@@ -13,6 +13,8 @@
   <script type="text/javascript" src="./js/container.js"></script>
   <script type="text/javascript" src="./js/note_list_item.js"></script>
   <script type="text/javascript" src="./js/note_list.js"></script>
+  <script type="text/javascript" src="./js/note_detail.js"></script>
+  <script type="text/javascript" src="./js/router.js"></script>
 </head>
 <body>
   <div id="header">
@@ -42,7 +44,7 @@
   <!-- メモ項目用テンプレート -->
   <script type="text/template" id="noteListItemView-template">
     <td>
-      <a href="#">
+      <a href="#notes/<%= id %>">
         <%= title %>
       </a>
     </td>
@@ -58,6 +60,10 @@
 	</a>
       </div>
     </td>
+  </script>
+  <script type="text/template" id="noteDetailView-template">
+    <h2><%= title %></h2>
+    <p><%= body %></p>
   </script>
 </body>
 </html>
