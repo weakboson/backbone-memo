@@ -14,7 +14,7 @@ App.NoteListView = Backbone.View.extend({
     var $insertionPoint = this.$('.js-noteListItemView-container');
     this.collection.each(function(note) {
       var itemView = new App.NoteListItemView({
-	model: note
+        model: note
       });
       $insertionPoint.append(itemView.render().$el);
     }, this);
