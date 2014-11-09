@@ -3,6 +3,7 @@ App.NoteListView = Backbone.View.extend({
   className: 'table',
   initialize: function(options) {
     this.collection = options.collection;
+    this.listenTo(this.collection, 'reset', this.render);
   },
   render: function() {
     var template = $('#noteListView-template').html();

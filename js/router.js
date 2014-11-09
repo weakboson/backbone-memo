@@ -1,9 +1,16 @@
 App.Router = Backbone.Router.extend({
   routes: {
-    'notes/:id' : 'showNoteDetail',
-    'new'       : 'showNewNote',
-    'notes/:id/edit' : 'showEditNote',
-    '*actions'  : 'defaultRoute'
+    'notes/:id'           : 'showNoteDetail',
+    'new'                 : 'showNewNote',
+    'notes/:id/edit'      : 'showEditNote',
+    'notes/search/:query' : 'searchNote',
+    '*actions'            : 'defaultRoute'
+  },
+  searchNote: function(query) {
+    var filtered = App.noteCollection.filter(function(note) {
+      return note.get('title').indexOf(query) !== -1;
+    });
+    this.showNoteList(filtered)
   },
   showEditNote: function(id) {
     var self = this;
@@ -42,15 +49,26 @@ App.Router = Backbone.Router.extend({
     App.mainContainer.show(noteDetailView);
     App.headerContainer.empty();
   },
-  showNoteList: function() {
-    var noteListView = new App.NoteListView({
-      collection: App.noteCollection
-    });
-    App.mainContainer.show(noteListView);
+  showNoteList: function(models) {
+    if (!this.filteredCollection) {
+      this.filteredCollection = new App.NoteCollection();
+    }
+    if (!App.mainContainer.has(App.NoteListView)) {
+      var noteListView = new App.NoteListView({
+        collection: this.filteredCollection
+      });
+      App.mainContainer.show(noteListView);
+    }
+    models = models || App.noteCollection.models;
+    this.filteredCollection.reset(models);
     this.showNoteControl();
   },
   showNoteControl: function() {
     var noteControlView = new App.NoteControlView();
+    noteControlView.on('submit:form', function(query) {
+      this.searchNote(query);
+      this.navigate('notes/search/' + query);
+    }, this);
     App.headerContainer.show(noteControlView);
   }
 });
