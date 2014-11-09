@@ -14,6 +14,7 @@
   <script type="text/javascript" src="./js/note_list_item.js"></script>
   <script type="text/javascript" src="./js/note_list.js"></script>
   <script type="text/javascript" src="./js/note_detail.js"></script>
+  <script type="text/javascript" src="./js/note_control.js"></script>
   <script type="text/javascript" src="./js/router.js"></script>
 </head>
 <body>
@@ -22,7 +23,7 @@
       <div class="navbar-inner">
 	<div class="container">
 	  <span class="navbar-brand">
-	    <a href="./index.html">
+	    <a href="./index.html#notes">
 	      Note Application Example
 	    </a>
 	  </span>
@@ -61,9 +62,24 @@
       </div>
     </td>
   </script>
+  <!-- メモ詳細用テンプレート -->
   <script type="text/template" id="noteDetailView-template">
     <h2><%= title %></h2>
     <p><%= body %></p>
+  </script>
+  <!-- メモ新規作成など用テンプレート -->
+  <script type="text/template" id="noteControllerView-template">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- あとで検索窓を置く -->
+      </div>
+      <div class="col-sm-6 text-right">
+        <a href="#new" class="btn btn-primary btn-small js-new">
+          <span class="glyphicon glyphicon-plus"></span>
+          New Note
+        </a>
+      </div>
+    </div>
   </script>
 </body>
 </html>

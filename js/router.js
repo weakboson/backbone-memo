@@ -11,11 +11,17 @@ App.Router = Backbone.Router.extend({
     var note = App.noteCollection.get(id);
     var noteDetailView = new App.NoteDetailView({model: note});
     App.mainContainer.show(noteDetailView);
+    App.headerContainer.empty();
   },
   showNoteList: function() {
     var noteListView = new App.NoteListView({
       collection: App.noteCollection
     });
     App.mainContainer.show(noteListView);
+    this.showNoteControl();
+  },
+  showNoteControl: function() {
+    var noteControlView = new App.NoteControlView();
+    App.headerContainer.show(noteControlView);
   }
 });

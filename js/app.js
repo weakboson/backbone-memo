@@ -17,6 +17,9 @@ $(function() {
   App.mainContainer = new App.Container({
     el: '#main-container'
   });
+  App.headerContainer = new App.Container({
+    el: '#header-container'
+  })
   App.noteCollection.fetch().then(function(notes) {
     if (notes.length === 0) {
       var models = initializeNotes();
