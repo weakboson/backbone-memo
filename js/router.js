@@ -2,7 +2,22 @@ App.Router = Backbone.Router.extend({
   routes: {
     'notes/:id' : 'showNoteDetail',
     'new'       : 'showNewNote',
+    'notes/:id/edit' : 'showEditNote',
     '*actions'  : 'defaultRoute'
+  },
+  showEditNote: function(id) {
+    var self = this;
+    var note = App.noteCollection.get(id);
+    var noteFormView = new App.NoteFormView({
+      model: note
+    });
+    noteFormView.on('submit:form', function(attrs) {
+      note.save(attrs);
+      self.showNoteDetail(note.get('id'));
+      self.navigate('notes/'+note.get('id'));
+    });
+    App.mainContainer.show(noteFormView);
+    App.headerContainer.empty();
   },
   showNewNote: function() {
     var self = this;
